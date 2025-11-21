@@ -1,0 +1,13 @@
+{
+	"aboutProject": "프로젝트 정보",
+	"descriptions": "react-antd-admin은 React Hooks, Vite 및 TypeScript를 기반으로 하는 중간 관리 솔루션입니다. 기업급 중간 관리 프로젝트를 빠르게 구축하는 데 도움이 됩니다. 새로운 기술을 채택하는 것뿐만 아니라 다른 측면에서도 도움을 드립니다.",
+	"projectMessage": "프로젝트 정보",
+	"version": "버전",
+	"lastBuildTime": "마지막 빌드 시간",
+	"license": "오픈소스 라이선스",
+	"previewAddress": "미리보기 주소",
+	"documentAddress": "문서 주소",
+	"author": "작성자",
+	"dependencies": "프로덕션 종속성",
+	"devDependencies": "개발 종속성"
+}

@@ -1,17 +1,17 @@
 /**
- * 通用的语言模块映射类型，表示可以嵌套的对象结构
+ * 범용 언어 모듈 매핑 타입, 중첩 가능한 객체 구조를 나타냅니다
  */
 interface LanguageModule<T> {
 	[key: string]: T | any
 }
 
 /**
- * 语言文件的参数类型，用于描述导入的语言文件集合
+ * 언어 파일의 매개변수 타입, 가져온 언어 파일 집합을 설명하는 데 사용됩니다
  */
 type LanguageFileMap = Record<string, LanguageModule<LanguageFileMap>>;
 
-export function getZhCnLang() {
-	const langFiles = import.meta.glob<LanguageFileMap>("./zh-CN/**/*.json", {
+export function getZhKoLang() {
+	const langFiles = import.meta.glob<LanguageFileMap>("./zh-KO/**/*.json", {
 		import: "default",
 		eager: true,
 	});

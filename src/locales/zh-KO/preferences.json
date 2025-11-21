@@ -1,0 +1,114 @@
+{
+	"title": "환경 설정",
+	"copyPreferences": "환경 설정 복사",
+	"copyPreferencesSuccessTitle": "복사 성공",
+	"copyPreferencesSuccess": "복사 성공, `src/store/preferences/index.ts` 파일에서 덮어쓰기하세요",
+	"clearAndLogout": "캐시 지우기 & 로그아웃",
+	"theme": {
+		"title": "테마",
+		"followSystem": "시스템 따르기",
+		"light": "라이트",
+		"dark": "다크",
+		"colorBlindMode": "색맹 모드",
+		"grayMode": "회색 모드",
+		"radius": "모서리 둥글기",
+		"builtin": {
+			"title": "내장 테마",
+			"red": "황혼",
+			"volcano": "화산",
+			"orange": "일몰",
+			"gold": "금잔화",
+			"yellow": "일출",
+			"lime": "라임",
+			"green": "오로라 그린",
+			"cyan": "밝은 청록색",
+			"blue": "새벽 파란색",
+			"geekblue": "기크 블루",
+			"purple": "자주색",
+			"magenta": "프랑스 자홍색",
+			"gray": "중성 회색",
+			"custom": "사용자 정의"
+		}
+	},
+	"layout": {
+		"title": "레이아웃",
+		"topNavigation": "상단 네비게이션",
+		"topNavigationTip": "메뉴가 상단에 위치",
+		"sideNavigation": "사이드 네비게이션",
+		"sideNavigationTip": "메뉴가 사이드에 위치",
+		"twoColumnNavigation": "2열 네비게이션",
+		"twoColumnNavigationTip": "세로 2열 메뉴가 사이드에 위치",
+		"mixedNavigation": "혼합 네비게이션",
+		"mixedNavigationTip": "1차 네비게이션은 상단, 2차 네비게이션은 사이드"
+	},
+	"sidebar": {
+		"title": "사이드바",
+		"width": "너비",
+		"enable": "사이드바 표시",
+		"collapsedWidth": "접힌 메뉴 너비",
+		"collapsed": "메뉴 접기",
+		"collapsedShowTitle": "접힌 상태에서 메뉴 이름 표시",
+		"firstColumnWidthInTwoColumnNavigation": "2열 네비게이션 첫 번째 열 너비",
+		"sidebarTheme": "사이드바 테마",
+		"accordion": "아코디언 메뉴",
+		"autoActivateChild": "자동으로 하위 메뉴 활성화",
+		"autoActivateChildTip": "최상위 메뉴를 클릭할 때, 첫 번째 하위 메뉴 또는 마지막으로 활성화된 하위 메뉴를 자동으로 활성화",
+		"expandOnHover": "마우스 오버 시 확장",
+		"expandOnHoverTip": "접힌 영역에 마우스를 올리면, `활성화`는 현재 하위 메뉴를 확장하고, `비활성화`는 전체 사이드바를 확장합니다"
+	},
+	"tabbar": {
+		"title": "탭바",
+		"enable": "탭바 활성화",
+		"icon": "탭바 아이콘 표시",
+		"showMore": "더보기 버튼 표시",
+		"showMaximize": "최대화 버튼 표시",
+		"persist": "탭 페이지 지속",
+		"draggable": "드래그 정렬 활성화",
+		"styleType": {
+			"title": "탭 스타일",
+			"chrome": "크롬",
+			"card": "카드",
+			"plain": "심플",
+			"brisk": "가볍게"
+		},
+		"contextMenu": {
+			"refresh": "다시 로드",
+			"close": "닫기",
+			"pin": "고정",
+			"unpin": "고정 해제",
+			"closeLeft": "왼쪽 탭 닫기",
+			"closeRight": "오른쪽 탭 닫기",
+			"closeOthers": "다른 탭 닫기",
+			"closeAll": "모든 탭 닫기",
+			"openInNewWindow": "새 창에서 열기",
+			"maximize": "최대화",
+			"restoreMaximize": "복원"
+		}
+	},
+	"animation": {
+		"title": "애니메이션",
+		"loading": "페이지 전환 로딩",
+		"transition": "페이지 전환 애니메이션",
+		"progress": "페이지 전환 진행 표시줄"
+	},
+	"general": {
+		"title": "일반",
+		"language": "언어",
+		"dynamicTitle": "동적 제목",
+		"watermark": "워터마크",
+		"watermarkTip": "워터마크는 웹사이트의 낙인과 같아 사용을 권장하지 않습니다",
+		"watermarkContent": "워터마크 내용",
+		"enableCheckUpdate": "정기 업데이트 확인",
+		"enableBackTopButton": "맨 위로 버튼 표시"
+	},
+	"footer": {
+		"title": "푸터",
+		"showFooter": "푸터 표시",
+		"fixedFooter": "푸터 고정",
+		"companyName": "회사명",
+		"companyWebsite": "회사 웹사이트",
+		"copyrightDate": "저작권 연도",
+		"ICPNumber": "ICP 등록 번호",
+		"ICPLink": "ICP 등록 링크"
+	}
+}

@@ -1,0 +1,39 @@
+{
+	"accessMode": {
+		"title": "백엔드 액세스 권한 표시",
+		"description": "현재 페이지는 백엔드 API를 통한 라우트 표시만 지원합니다"
+	},
+	"adminVisible": {
+		"title": "Admin 표시",
+		"description": "현재 페이지는 Admin 계정에서만 표시됩니다"
+	},
+	"commonVisible": {
+		"title": "Common 표시",
+		"description": "현재 페이지는 Common 계정에서만 표시됩니다"
+	},
+	"pageControl": {
+		"alertMessage": "프론트엔드 페이지 액세스 권한 데모",
+		"alertDescription": "다른 계정으로 전환하여 왼쪽 '권한 데모' 하위 메뉴의 변경 사항을 확인하세요.",
+		"cardTitle": "권한 모드",
+		"frontendControl": "프론트엔드 권한 제어",
+		"backendControl": "백엔드 권한 제어",
+		"switchToFrontend": "프론트엔드 권한 모드로 전환",
+		"switchToBackend": "백엔드 권한 모드로 전환",
+		"switchAdmin": "Admin 사용자로 전환",
+		"switchCommon": "Common 사용자로 전환",
+		"currentPermissionMode": "현재 권한 모드:",
+		"accountSwitching": "계정 전환",
+		"warningMessage": "enableFrontendAceess와 enableBackendAceess가 같을 때는 라우트 모드를 전환할 수 없습니다."
+	},
+	"buttonControl": {
+		"alertMessage": "프론트엔드 버튼 액세스 권한 데모",
+		"alertDescription": "다른 계정으로 전환하여 버튼 변경 사항을 확인하세요.",
+		"currentRole": "현재 역할",
+		"switchAdmin": "Admin 사용자로 전환",
+		"switchCommon": "Common 사용자로 전환",
+		"componentControlPermissionCodes": "컴포넌트 형식 제어 - 권한 코드",
+		"componentControlRoles": "컴포넌트 형식 제어 - 역할",
+		"functionControlPermissionCodes": "함수 형식 제어 - 권한 코드",
+		"functionControlRoles": "함수 형식 제어 - 역할"
+	}
+}

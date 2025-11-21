@@ -9,106 +9,108 @@ import { goLogin } from "./go-login";
 let isRefreshing = false;
 
 /**
- * 刷新token并重新发起请求
+ * token을 갱신하고 요청을 다시 시작합니다
  *
- * @param request 请求对象
- * @param options 请求选项
- * @param refreshToken 刷新token
- * @returns 响应对象
- * @throws 刷新 token 失败时抛出异常
+ * @param request 요청 객체
+ * @param options 요청 옵션
+ * @param refreshToken 갱신 token
+ * @returns 응답 객체
+ * @throws token 갱신 실패 시 예외를 throw합니다
  */
 export async function refreshTokenAndRetry(request: Request, options: Options, refreshToken: string) {
 	if (!isRefreshing) {
 		isRefreshing = true;
 		try {
-			// 调用 fetchRefreshToken 函数，使用传入的 refreshToken 获取新的 token 和 refreshToken
+			// fetchRefreshToken 함수를 호출하여 전달된 refreshToken을 사용하여 새로운 token과 refreshToken을 가져옵니다
 			const freshResponse = await fetchRefreshToken({ refreshToken });
-			// 从响应中提取新的 token
+			// 응답에서 새로운 token 추출
 			const newToken = freshResponse.result.token;
-			// 从响应中提取新的 refreshToken
+			// 응답에서 새로운 refreshToken 추출
 			const newRefreshToken = freshResponse.result.refreshToken;
-			// 将新的 token 和 refreshToken 保存到 userStore 中
+			// 새로운 token과 refreshToken을 userStore에 저장
 			useAuthStore.setState({ token: newToken, refreshToken: newRefreshToken });
-			// 调用 onRefreshed 函数，传入新的 token
+			// onRefreshed 함수를 호출하여 새로운 token 전달
 			onRefreshed(newToken);
 
-			// 设置请求的 Authorization 头部为新的 token
-			// 重试当前请求
+			// 요청의 Authorization 헤더를 새로운 token으로 설정
+			// 현재 요청 재시도
 			request.headers.set(AUTH_HEADER, `Bearer ${newToken}`);
-			// 使用新的 token 重新发起请求
+			// 새로운 token을 사용하여 요청을 다시 시작
 			return ky(request, options);
 		}
 		catch (error) {
-			// 调用 onRefreshFailed 函数，传入错误对象
-			// refreshToken 认证未通过，拒绝所有等待的请求
+			// onRefreshFailed 함수를 호출하여 오류 객체 전달
+			// refreshToken 인증이 통과하지 못했으므로 대기 중인 모든 요청 거부
 			onRefreshFailed(error);
-			// 跳转到登录页
+			// 로그인 페이지로 이동
 			goLogin();
-			// 抛出错误
+			// 오류 throw
 			throw error;
 		}
 		finally {
-			// 无论是否发生错误，都将 isRefreshing 设置为 false
+			// 오류 발생 여부와 관계없이 isRefreshing을 false로 설정
 			isRefreshing = false;
 		}
 	}
 	else {
-		// 等待 token 刷新完成
+		// token 갱신 완료 대기
 		return new Promise<KyResponse>((resolve, reject) => {
-			// 添加刷新订阅者
+			// 갱신 구독자 추가
 			addRefreshSubscriber({
-				// 当 token 刷新成功后，将新的 token 设置到请求的 Authorization 头部，并重新发起请求
+				// token 갱신이 성공하면 새로운 token을 요청의 Authorization 헤더에 설정하고 요청을 다시 시작합니다
 				resolve: async (newToken) => {
 					request.headers.set(AUTH_HEADER, `Bearer ${newToken}`);
 					resolve(ky(request, options));
 				},
-				// 当 token 刷新失败时，拒绝当前 Promise
+				// token 갱신이 실패하면 현재 Promise를 거부합니다
 				reject,
 			});
 		});
 	}
 }
 
-// 定义一个数组，用于存储所有等待 token 刷新的订阅者
-// 每个订阅者对象包含 resolve 和 reject 方法，分别用于在 token 刷新成功或失败时调用
+// token 갱신을 기다리는 모든 구독자를 저장하는 배열 정의
+// 각 구독자 객체는 resolve와 reject 메서드를 포함하며, token 갱신 성공 또는 실패 시 각각 호출됩니다
 let refreshSubscribers: Array<{
-	resolve: (token: string) => void // 当 token 刷新成功时调用的函数，传入新的 token
-	reject: (error: any) => void // 当 token 刷新失败时调用的函数，传入错误信息
+	resolve: (token: string) => void // token 갱신 성공 시 호출되는 함수, 새로운 token을 전달받음
+	reject: (error: any) => void // token 갱신 실패 시 호출되는 함수, 오류 정보를 전달받음
 }> = [];
 
 /**
- * 当 token 刷新成功时，通知所有等待的订阅者。
- * 遍历所有订阅者，调用其 resolve 方法，并传入新的 token。
- * 然后清空订阅者列表，准备下一次 token 刷新。
+ * token 갱신이 성공하면 대기 중인 모든 구독자에게 알립니다.
+ * 모든 구독자를 순회하며 resolve 메서드를 호출하고 새로운 token을 전달합니다.
+ * 그런 다음 구독자 목록을 비워 다음 token 갱신을 준비합니다.
  *
- * @param token 刷新后的令牌字符串
+ * @param token 갱신된 토큰 문자열
  */
 function onRefreshed(token: string) {
 	refreshSubscribers.forEach(subscriber => subscriber.resolve(token));
-	refreshSubscribers = []; // 清空订阅者列表
+	refreshSubscribers = []; // 구독자 목록 비우기
 }
 
 /**
- * 当 token 刷新失败时，通知所有等待的订阅者。
- * 遍历所有订阅者，调用其 reject 方法，并传入错误信息。
- * 然后清空订阅者列表。
+ * token 갱신이 실패하면 대기 중인 모든 구독자에게 알립니다.
+ * 모든 구독자를 순회하며 reject 메서드를 호출하고 오류 정보를 전달합니다.
+ * 그런 다음 구독자 목록을 비웁니다.
  *
- * @param error 刷新失败时产生的错误信息
+ * @param error 갱신 실패 시 생성된 오류 정보
  */
 function onRefreshFailed(error: any) {
 	refreshSubscribers.forEach(subscriber => subscriber.reject(error));
-	refreshSubscribers = []; // 清空订阅者列表
+	refreshSubscribers = []; // 구독자 목록 비우기
 }
 
 /**
- * 添加一个新的订阅者到列表中。
- * 订阅者对象应包含 resolve 和 reject 方法。
+ * 목록에 새로운 구독자를 추가합니다.
+ * 구독자 객체는 resolve와 reject 메서드를 포함해야 합니다.
  *
- * @param subscriber 订阅者对象，包含 resolve 和 reject 方法
+ * @param subscriber resolve와 reject 메서드를 포함하는 구독자 객체
+ * @param subscriber.resolve token 갱신 성공 시 호출되는 함수, 새로운 token을 전달받음
+ * @param subscriber.reject token 갱신 실패 시 호출되는 함수, 오류 정보를 전달받음
  */
 function addRefreshSubscriber(subscriber: {
-	resolve: (token: string) => void // 当 token 刷新成功时调用的函数
-	reject: (error: any) => void // 当 token 刷新失败时调用的函数
+	resolve: (token: string) => void // token 갱신 성공 시 호출되는 함수
+	reject: (error: any) => void // token 갱신 실패 시 호출되는 함수
 }) {
-	refreshSubscribers.push(subscriber); // 将新的订阅者添加到列表中
+	refreshSubscribers.push(subscriber); // 새로운 구독자를 목록에 추가
 }

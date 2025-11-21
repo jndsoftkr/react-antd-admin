@@ -1,0 +1,42 @@
+{
+	"role": {
+		"name": "역할 이름",
+		"id": "역할 식별자",
+		"addRole": "역할 추가",
+		"editRole": "역할 편집",
+		"assignMenu": "메뉴 할당"
+	},
+	"user": {
+		"name": "사용자 이름",
+		"id": "사용자 식별자",
+		"addUser": "사용자 추가",
+		"editUser": "사용자 편집"
+	},
+	"menu": {
+		"name": "메뉴 이름",
+		"routePath": "라우트 경로",
+		"addMenu": "메뉴 추가",
+		"editMenu": "메뉴 편집",
+		"menuType": "메뉴 유형",
+		"menuTypeDesc": "메뉴 유형: 0은 메뉴, 1은 Iframe, 2는 외부 링크, 3은 버튼을 나타냅니다",
+		"menu": "메뉴",
+		"iframe": "Iframe",
+		"externalLink": "외부 링크",
+		"button": "버튼",
+		"menuOrder": "메뉴 순서",
+		"menuIcon": "메뉴 아이콘",
+		"componentUrl": "컴포넌트 경로",
+		"keepAlive": "페이지 캐시",
+		"hideInMenu": "메뉴에서 숨기기",
+		"currentActiveMenu": "활성 경로",
+		"iframeLink": "Iframe 링크",
+		"externalLinkUrl": "외부 링크 주소",
+		"parentMenu": "상위 메뉴"
+	},
+	"dept": {
+		"name": "부서 이름",
+		"id": "부서 식별자",
+		"addDept": "부서 추가",
+		"editDept": "부서 편집"
+	}
+}

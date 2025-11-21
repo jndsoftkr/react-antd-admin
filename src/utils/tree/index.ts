@@ -1,10 +1,10 @@
 /**
- * @description 构造树型结构数据
- * @param data 数据源
- * @param id id字段 默认id
- * @param parentId 父节点字段，默认parentId
- * @param children 子节点字段，默认children
- * @returns 追加字段后的树
+ * @description 트리 구조 데이터 생성
+ * @param data 데이터 소스
+ * @param id id 필드, 기본값 id
+ * @param parentId 부모 노드 필드, 기본값 parentId
+ * @param children 자식 노드 필드, 기본값 children
+ * @returns 필드가 추가된 트리
  */
 export function handleTree(data: any[], id?: string, parentId?: string, children?: string): any {
 	if (!Array.isArray(data)) {
@@ -55,16 +55,16 @@ export function handleTree(data: any[], id?: string, parentId?: string, children
 }
 
 export interface TreeConfigOptions {
-	// 子属性的名称，默认为'children'
+	// 자식 속성의 이름, 기본값 'children'
 	childProps: string
 }
 
 /**
- * @zh_CN 遍历树形结构，并返回所有节点中指定的值。
- * @param tree 树形结构数组
- * @param getValue 获取节点值的函数
- * @param options 作为子节点数组的可选属性名称。
- * @returns 所有节点中指定的值的数组
+ * @zh_CN 트리 구조를 순회하고 모든 노드에서 지정된 값을 반환합니다.
+ * @param tree 트리 구조 배열
+ * @param getValue 노드 값을 가져오는 함수
+ * @param options 자식 노드 배열의 선택적 속성 이름입니다.
+ * @returns 모든 노드에서 지정된 값의 배열
  */
 export function traverseTreeValues<T, V>(
 	tree: T[],
@@ -97,11 +97,11 @@ export function traverseTreeValues<T, V>(
 }
 
 /**
- * 根据条件过滤给定树结构的节点，并以原有顺序返回所有匹配节点的数组。
- * @param tree 要过滤的树结构的根节点数组。
- * @param filter 用于匹配每个节点的条件。
- * @param options 作为子节点数组的可选属性名称。
- * @returns 包含所有匹配节点的数组。
+ * 조건에 따라 주어진 트리 구조의 노드를 필터링하고 원래 순서로 모든 일치하는 노드의 배열을 반환합니다.
+ * @param tree 필터링할 트리 구조의 루트 노드 배열입니다.
+ * @param filter 각 노드를 일치시키는 데 사용되는 조건입니다.
+ * @param options 자식 노드 배열의 선택적 속성 이름입니다.
+ * @returns 모든 일치하는 노드를 포함하는 배열입니다.
  */
 export function filterTree<T extends Record<string, any>>(
 	tree: T[],
@@ -128,10 +128,10 @@ export function filterTree<T extends Record<string, any>>(
 }
 
 /**
- * 根据条件重新映射给定树结构的节点
- * @param tree 要过滤的树结构的根节点数组。
- * @param mapper 用于map每个节点的条件。
- * @param options 作为子节点数组的可选属性名称。
+ * 조건에 따라 주어진 트리 구조의 노드를 다시 매핑합니다
+ * @param tree 필터링할 트리 구조의 루트 노드 배열입니다.
+ * @param mapper 각 노드를 map하는 데 사용되는 조건입니다.
+ * @param options 자식 노드 배열의 선택적 속성 이름입니다.
  */
 export function mapTree<T, V extends Record<string, any>>(
 	tree: T[],

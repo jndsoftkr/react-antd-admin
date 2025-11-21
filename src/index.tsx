@@ -10,7 +10,7 @@ import "./styles/index.css";
 
 async function setupApp() {
 	/**
-	 * @zh 初始化国际化，必须放在第一位，loading 中引用了国际化
+	 * @zh 国际化 초기화, 반드시 첫 번째에 위치해야 함, loading에서 국제화를 참조함
 	 * @en Initialize internationalization, must be placed first. Loading refer to internationalization
 	 */
 	setupI18n();

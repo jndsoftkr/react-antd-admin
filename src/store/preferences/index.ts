@@ -8,7 +8,7 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
 /**
- * 默认偏好设置
+ * 기본 환경 설정
  */
 export const DEFAULT_PREFERENCES = {
 	/* ================== General ================== */
@@ -18,7 +18,7 @@ export const DEFAULT_PREFERENCES = {
 	pageLayout: "layout-right",
 	enableBackendAccess: true,
 	enableFrontendAceess: false,
-	language: "zh-CN",
+	language: "zh-KO",
 	enableDynamicTitle: true,
 	enableCheckUpdates: true,
 	checkUpdatesInterval: 1,
@@ -71,22 +71,22 @@ export const DEFAULT_PREFERENCES = {
 } satisfies PreferencesState;
 
 /**
- * 偏好设置操作接口
+ * 환경 설정 작업 인터페이스
  */
 interface PreferencesAction {
 	reset: () => void
 	changeSiteTheme: (theme: ThemeType) => void
 	changeLanguage: (language: LanguageType) => void
 	setPreferences: {
-		// 单个 key-value 更新
+		// 단일 key-value 업데이트
 		<T>(key: string, value: T): void
-		// 对象形式批量更新
+		// 객체 형식 일괄 업데이트
 		<T extends Partial<PreferencesState>>(preferences: T): void
 	}
 }
 
 /**
- * 偏好设置状态管理
+ * 환경 설정 상태 관리
  */
 export const usePreferencesStore = create<
 	PreferencesState & PreferencesAction
@@ -96,7 +96,7 @@ export const usePreferencesStore = create<
 			...DEFAULT_PREFERENCES,
 
 			/**
-			 * 更新偏好设置
+			 * 환경 설정 업데이트
 			 */
 			setPreferences: (...args: any[]) => {
 				if (args.length === 1) {
@@ -114,7 +114,7 @@ export const usePreferencesStore = create<
 			},
 
 			/**
-			 * 更新主题
+			 * 테마 업데이트
 			 */
 			changeSiteTheme: (theme) => {
 				set(() => {
@@ -123,7 +123,7 @@ export const usePreferencesStore = create<
 			},
 
 			/**
-			 * 更新语言
+			 * 언어 업데이트
 			 */
 			changeLanguage: (language) => {
 				set(() => {
@@ -132,7 +132,7 @@ export const usePreferencesStore = create<
 			},
 
 			/**
-			 * 重置状态
+			 * 상태 재설정
 			 */
 			reset: () => {
 				set(() => {
@@ -140,6 +140,14 @@ export const usePreferencesStore = create<
 				});
 			},
 		}),
-		{ name: getAppNamespace("preferences") },
+		{
+			name: getAppNamespace("preferences"),
+			// 기존 zh-CN 설정을 zh-KO로 마이그레이션
+			onRehydrateStorage: () => (state) => {
+				if (state && state.language === "zh-KO") {
+					state.language = "zh-KO";
+				}
+			},
+		},
 	),
 );

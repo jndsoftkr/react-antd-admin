@@ -1,0 +1,42 @@
+{
+	"required": "필수 항목",
+	"length": "{{length}}자만 지원",
+	"username": {
+		"required": "사용자 이름을 입력하세요",
+		"invalid": "4~16자, 영문, 숫자, 밑줄 및 하이픈 지원"
+	},
+	"password": {
+		"required": "비밀번호를 입력하세요",
+		"invalid": "8-16자, 영문과 숫자를 포함해야 합니다"
+	},
+	"code": {
+		"required": "인증 코드를 입력하세요"
+	},
+	"mobile": {
+		"required": "휴대폰 번호를 입력하세요",
+		"invalid": "휴대폰 번호 형식이 잘못되었습니다"
+	},
+	"telephone": {
+		"required": "전화번호를 입력하세요",
+		"invalid": "전화번호 형식이 잘못되었습니다"
+	},
+	"email": {
+		"required": "이메일을 입력하세요",
+		"invalid": "이메일 형식이 잘못되었습니다"
+	},
+	"confirmPassword": {
+		"required": "비밀번호를 다시 입력하세요",
+		"invalid": "입력한 비밀번호가 일치하지 않습니다"
+	},
+	"agree": {
+		"required": "개인정보 보호정책 및 약관에 동의하세요"
+	},
+	"alphanumeric": {
+		"required": "영문 또는 숫자를 입력하세요",
+		"invalid": "영문 또는 숫자를 입력하세요"
+	},
+	"unifiedSocialCreditCode": {
+		"required": "통합 사회 신용 코드를 입력하세요",
+		"invalid": "올바른 통합 사회 신용 코드를 입력하세요"
+	}
+}

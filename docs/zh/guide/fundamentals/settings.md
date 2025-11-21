@@ -114,7 +114,7 @@ export const DEFAULT_PREFERENCES = {
 	/* ================== General ================== */
 	enableBackendAccess: true,
 	enableFrontendAceess: false,
-	language: "zh-CN",
+	language: "zh-KO",
 	enableCheckUpdates: true,
 	checkUpdatesInterval: 1,
 	/* ================== General ================== */

@@ -14,7 +14,7 @@ import { RouterProvider } from "react-router/dom";
 
 import { router } from "./router";
 import { customAntdDarkTheme, customAntdLightTheme } from "./styles/theme/antd/antd-theme";
-import "dayjs/locale/zh-cn";
+import "dayjs/locale/ko";
 
 export default function App() {
 	const { i18n } = useTranslation();
@@ -51,8 +51,8 @@ export default function App() {
 		if (language === "en-US") {
 			dayjs.locale("en");
 		}
-		else if (language === "zh-CN") {
-			dayjs.locale("zh-cn");
+		else if (language === "zh-KO") {
+			dayjs.locale("ko");
 		}
 	}, [language]);
 
@@ -98,7 +98,7 @@ export default function App() {
 	}, [theme, setEmulateTheme]);
 
 	/**
-	 * 更新页面颜色模式（灰色、色弱）
+	 * 페이지 색상 모드 업데이트 (회색, 색맹)
 	 */
 	const updateColorMode = () => {
 		const dom = document.documentElement;
